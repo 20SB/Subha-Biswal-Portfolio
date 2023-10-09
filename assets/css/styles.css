@@ -69,6 +69,16 @@ a {
     font-weight: 600;
     font-size: 13px;
 }
+.bck-btn{
+    position: absolute;
+    top: 10%;
+    left: 25%;
+    /* background-color: aqua; */
+    cursor: pointer;
+    z-index: 1;
+    display: flex;
+    gap: 5px;
+}
 .bold-font{
     font-family: "Archivo Black", sans-serif;
     font-weight: bold;
@@ -93,4 +103,7 @@ a {
     100% {
         font-size: 12px;
     }
+}
+.disp-none{
+    display: none;
 }
