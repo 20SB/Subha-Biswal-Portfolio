@@ -23,6 +23,7 @@
     width: auto;
     margin-left: -50px;
     margin-top: -120px;
+    display: flex;
 }
 
 @keyframes HighLightedText_gradient__O4MSF {
@@ -42,7 +43,7 @@
     mix-blend-mode: multiply;
     position: absolute;
     top: 150px;
-    right: 250px;
+    right: 350px;
     transition: transform 0.5s ease;
 }
 #profile-logo:hover {
@@ -87,12 +88,57 @@
     }
 }
 .skills-container {
+    margin-top: 60px;
+    margin-bottom: 20px;
     font-size: 24px;
+    font-weight: bold;
 }
 .skill {
-    /* font-size: 24px; */
-    font-weight: bold;
+    color: darkblue;
     white-space: nowrap; /* Prevent line breaks */
     overflow: hidden; /* Hide overflow text */
     border-right: 3px solid transparent; /* Create a typing cursor effect */
+    font-family: 'Archivo Black';
+}
+.pagelinks{
+    display: flex;
+    justify-content: space-between;
+    font-size: 30px;
+    align-items: flex-end;
+    gap: 10px;
+    width: 120px;
+    height: 195px;
+    margin-left: 10px;
+}
+.thought{
+    width: 80%;
+    text-align: justify;
+}
+/* strong{
+    font-family: "Archivo Black", sans-serif;
+    font-weight: bold;
+} */
+
+.sign-container img{
+    width: 300px;
+    transform: rotate(343deg);
+    
+}
+.end-div{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    font-size: 2rem;
+    text-align: right;
+    font-family: cursive;
+    font-weight: bold;
+    align-items: flex-end;
+}
+.circle{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: -webkit-linear-gradient(-70deg,#2cda86,#1c86ff,#2cda86,#1c86ff);
+    background-size: 400% 400%;
+    animation: DecorativeContent_gradient__usXfH 3s ease infinite;
 }

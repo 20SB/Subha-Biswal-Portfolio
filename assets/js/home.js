@@ -1,9 +1,7 @@
 console.log("skills js loaded")
 const skillsArray = [
     "Frontend Development",
-    "Backend Development",
-    "Full Stack Web Development",
-    "MERN Stack Development"
+    "Backend Development"
 ];
 
 const skillIndex = { index: 0 };
@@ -46,7 +44,7 @@ async function typeNextSkill() {
     if (skillIndex.index < skillsArray.length) {
         const skill = skillsArray[skillIndex.index];
         const typingSpeed = 100; // Typing speed in milliseconds
-        const erasingSpeed = 0.5 * typingSpeed; // Erasing speed is double the typing speed
+        const erasingSpeed = 0.3 * typingSpeed; // Erasing speed is double the typing speed
         const skillElement = document.querySelector('.skill');
         skillElement.textContent = ''; // Clear the original text
 
