@@ -1,59 +1,72 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Function to load content via AJAX
     var backButton = document.getElementById("back-button");
-    var currentSection = "home"; // Initialize current section to 'home'
-    var prevSection = null; // Initialize previous section to null
+    var currentSection = "home";
+    var prevSection = null;
 
-    // Define the loadScript function to load JavaScript files dynamically
-    function loadScript(url) {
+    function loadScript(scriptUrl, callback) {
         var script = document.createElement("script");
-        script.src = url;
+        script.src = scriptUrl;
+        script.async = true;
+        script.onload = callback;
+        script.onerror = function () {
+            console.error("Failed to load script:", scriptUrl);
+            callback(); // Continue with the rest of the code even if script loading fails
+        };
         document.head.appendChild(script);
     }
 
+    function scriptUrlExists(scriptUrl) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("HEAD", scriptUrl, false);
+        xhr.send();
+        return xhr.status === 200;
+    }
+
     function loadContent(section) {
-        if (section == "home") {
-            backButton.classList.add("disp-none");
-        } else {
-            backButton.classList.remove("disp-none");
-        }
-        prevSection = currentSection; // Store the current section as the previous section
-        currentSection = section; // Update the current section
+        prevSection = currentSection;
+        currentSection = section;
 
         var xhr = new XMLHttpRequest();
-        var contentUrl = "sections/" + section + ".html"; // Include the folder path
-        var scriptUrl = "assets/js/" + section + ".js"; // Include the folder path
+        var contentUrl = "sections/" + section + ".html";
+        var scriptUrl = "assets/js/" + section + ".js";
         xhr.open("GET", contentUrl, true);
         xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                document.getElementById("main-content").innerHTML =
-                    xhr.responseText;
-                loadScript(scriptUrl); // Call the loadScript function to load the JavaScript file
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    document.getElementById("main-content").innerHTML =
+                        xhr.responseText;
+
+                    if (scriptUrlExists(scriptUrl)) {
+                        loadScript(scriptUrl, function () {
+                            // Code to execute after script has loaded (if it exists)
+                            // You can add script-specific functionality here.
+                        });
+                    }
+                } else {
+                    console.error("Failed to load content:", contentUrl);
+                }
             }
         };
         xhr.send();
     }
 
-    // Handle clicks on navigation links
     var navLinks = document.querySelectorAll("nav a");
     navLinks.forEach(function (link) {
         link.addEventListener("click", function (e) {
             e.preventDefault();
             var section = e.target.getAttribute("href").substring(1);
-            
+
             loadContent(section);
         });
     });
 
-    // Load initial content
     loadContent("home");
 
-    // Handle back button click
     if (backButton) {
         backButton.addEventListener("click", function (e) {
             e.preventDefault();
             if (prevSection !== null) {
-                loadContent(prevSection); // Load the previous section when the back button is clicked
+                loadContent(prevSection);
             }
         });
     }
@@ -73,10 +86,8 @@ document.addEventListener("DOMContentLoaded", function () {
         progressValue.textContent = `${scrollValue}%`;
     };
 
-    // Use the "scroll" event on the #main-content div
     let mainContent = document.getElementById("main-content");
     mainContent.addEventListener("scroll", scrollPercentage);
 
-    // Call scrollPercentage on page load
     window.addEventListener("load", scrollPercentage);
 });
