@@ -101,6 +101,6 @@
     height: 45px;
     border-radius: 50%;
     background: -webkit-linear-gradient(-70deg,#2cda86,#1c86ff,#2cda86,#1c86ff);
-    background-size: 400% 400%;
-    animation: DecorativeContent_gradient__usXfH 3s ease infinite;
+    background-size: 300% 300%;
+    animation: HighLightedText_gradient__O4MSF 3s ease infinite;
 }
