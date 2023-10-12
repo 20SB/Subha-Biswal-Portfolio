@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    var backButton = document.getElementById("back-button");
-    var currentSection = "home";
-    var prevSection = null;
+    var loadedContent = null;
 
     function loadScript(scriptUrl, callback) {
         var script = document.createElement("script");
@@ -23,9 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function loadContent(section) {
-        prevSection = currentSection;
-        currentSection = section;
-
+        loadedContent=section;
+        console.log(section, "loaded");
         var xhr = new XMLHttpRequest();
         var contentUrl = "sections/" + section + ".html";
         var scriptUrl = "assets/js/" + section + ".js";
@@ -51,25 +48,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     var navLinks = document.querySelectorAll("nav a");
+
     navLinks.forEach(function (link) {
         link.addEventListener("click", function (e) {
             e.preventDefault();
             var section = e.target.getAttribute("href").substring(1);
-
-            loadContent(section);
+    
+            // Remove the "active" class from all links
+            navLinks.forEach(function (link) {
+                link.classList.remove("active");
+            });
+    
+            // Add the "active" class to the clicked link
+            if(section != "home"){
+                e.target.classList.add("active");
+            }
+    
+            if (loadedContent == section) {
+                return;
+            } else {
+                loadContent(section);
+            }
         });
     });
+    
 
     loadContent("home");
 
-    if (backButton) {
-        backButton.addEventListener("click", function (e) {
-            e.preventDefault();
-            if (prevSection !== null) {
-                loadContent(prevSection);
-            }
-        });
-    }
 
     let scrollPercentage = () => {
         let scrollProgress = document.getElementById("progress");
