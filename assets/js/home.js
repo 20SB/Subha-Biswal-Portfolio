@@ -1,5 +1,5 @@
 {
-    let skillsArray = ["Frontend Development", "Backend Development"];
+    let skillsArray = ["Frontend Development", "Backend Development", "MERN Stack Development"];
 
     const skillIndex = { index: 0 };
 

@@ -28,7 +28,6 @@
     background-color: inherit;
 }
 
-
 /* The circles on the timeline */
 .container::after {
     content: "";
@@ -42,7 +41,6 @@
     border-radius: 50%;
     z-index: 1;
 }
-
 
 /* Add arrows to the right container (pointing left) */
 .right::before {
@@ -93,7 +91,8 @@
         left: 60px;
         border: medium solid var(--wte-clr);
         border-width: 10px 10px 10px 0;
-        border-color: transparent var(--wte-clr) transparent transparent;
+        border-color: transparent var(--wte-clr) transparent
+            transparent;
     }
 
     /* Make sure all circles are at the same spot */
@@ -107,28 +106,31 @@
         left: 0%;
     }
 }
-.img-cntr{
+.img-cntr {
     height: 100px;
     width: 100px;
     /* background-color: aqua; */
 }
-.img-cntr img{
+.img-cntr img {
     width: 100%;
     mix-blend-mode: multiply;
 }
-.college-name{
+.college-name {
     font-weight: bold;
     font-size: larger;
     font-family: "Archivo Black", sans-serif;
     line-height: 2;
 }
-.course-name{
+.course-name {
     font-weight: bold;
 }
-.course-period{
+.course-period {
     font-size: small;
 }
 :root {
     --wte-clr: #ebebeb;
 }
-
+.score {
+    font-size: small;
+    font-family: "Courier New", Courier, monospace;
+}
